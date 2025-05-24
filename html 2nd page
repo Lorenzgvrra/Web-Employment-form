@@ -2,17 +2,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Submitted Info</title>
+  <title>Submitted Employee Info</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section h2 {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      row-gap: 8px;
+      column-gap: 10px;
+    }
+
+    .info div {
+      word-wrap: break-word;
+    }
+  </style>
 </head>
 <body>
-  <h1>Submitted Employee Information</h1>
-  <div id="output"></div>
+  <div class="container">
+    <h1>Submitted Employee Information</h1>
+
+    <div class="section">
+      <h2>Personal Information</h2>
+      <div class="info" id="personalInfo"></div>
+    </div>
+
+    <div class="section">
+      <h2>Employment Information</h2>
+      <div class="info" id="employmentInfo"></div>
+    </div>
+
+    <div class="section">
+      <h2>Education</h2>
+      <div class="info" id="educationInfo"></div>
+    </div>
+
+    <div class="section">
+      <h2>Professional Experience</h2>
+      <div class="info" id="experienceInfo"></div>
+    </div>
+
+    <div class="section">
+      <h2>Emergency Contact</h2>
+      <div class="info" id="emergencyInfo"></div>
+    </div>
+  </div>
 
   <script>
     const data = JSON.parse(localStorage.getItem("employeeData"));
-    const output = document.getElementById("output");
-    output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+
+    function populateSection(id, fields) {
+      const container = document.getElementById(id);
+      fields.forEach(([label, key]) => {
+        container.innerHTML += `<div><strong>${label}</strong></div><div>${data[key] || ""}</div>`;
+      });
+    }
+
+    populateSection("personalInfo", [
+      ["Full Name", "fullName"],
+      ["Address", "address"],
+      ["Phone Number", "phone"],
+      ["Email", "email"]
+    ]);
+
+    populateSection("employmentInfo", [
+      ["Title", "title"],
+      ["Department", "department"],
+      ["Date of Hire", "hireDate"],
+      ["Employment Status", "employmentStatus"]
+    ]);
+
+    populateSection("educationInfo", [
+      ["Highest Level", "education"],
+      ["Institution", "institution"],
+      ["Degree", "degree"],
+      ["Major/Field", "major"],
+      ["Graduation Date", "gradDate"]
+    ]);
+
+    populateSection("experienceInfo", [
+      ["Certificates/Licenses", "certs"],
+      ["Previous Experience", "experience"]
+    ]);
+
+    populateSection("emergencyInfo", [
+      ["Full Name", "emName"],
+      ["Address", "emAddress"],
+      ["Phone", "emPhone"],
+      ["Cell Phone", "emCell"],
+      ["Relationship", "relationship"]
+    ]);
   </script>
 </body>
 </html>
