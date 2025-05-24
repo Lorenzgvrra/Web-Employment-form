@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submitted Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Submitted Employee Information</h1>
+  <div id="output"></div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("employeeData"));
+    const output = document.getElementById("output");
+    output.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+  </script>
+</body>
+</html>
