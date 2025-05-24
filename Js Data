@@ -1,0 +1,29 @@
+document.getElementById("employeeForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = {
+    fullName: document.getElementById("fullName").value,
+    address: document.getElementById("address").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    title: document.getElementById("title").value,
+    department: document.getElementById("department").value,
+    hireDate: document.getElementById("hireDate").value,
+    employmentStatus: document.getElementById("employmentStatus").value,
+    education: document.getElementById("education").value,
+    institution: document.getElementById("institution").value,
+    degree: document.getElementById("degree").value,
+    major: document.getElementById("major").value,
+    gradDate: document.getElementById("gradDate").value,
+    certs: document.getElementById("certs").value,
+    experience: document.getElementById("experience").value,
+    emName: document.getElementById("emName").value,
+    emAddress: document.getElementById("emAddress").value,
+    emPhone: document.getElementById("emPhone").value,
+    emCell: document.getElementById("emCell").value,
+    relationship: document.getElementById("relationship").value
+  };
+
+  localStorage.setItem("employeeData", JSON.stringify(formData));
+  window.location.href = "submitted.html";
+});
